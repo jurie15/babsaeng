@@ -9,6 +9,7 @@ import {
   searchNearbyRestaurants,
   normalizeKakaoPlace,
   NoResultsError,
+  CATEGORY_REVIEW_STUBS,
   type NormalizedRestaurant,
 } from "@/lib/kakao";
 
@@ -697,7 +698,12 @@ export default function ResultPage() {
                   <p className="text-xs text-gray-400">💬 리뷰</p>
                   {("reviewSummaries" in current
                     ? current.reviewSummaries
-                    : [current.reviewSummary]
+                    : (() => {
+                        const stubs = CATEGORY_REVIEW_STUBS[current.category]
+                          ?? CATEGORY_REVIEW_STUBS["기타"]
+                          ?? [current.reviewSummary];
+                        return [current.reviewSummary, ...stubs.filter(s => s !== current.reviewSummary)].slice(0, 3);
+                      })()
                   ).map((review, i) => (
                     <div key={i} className="bg-gray-50 rounded-2xl px-4 py-3">
                       <p className="text-sm text-gray-700 leading-relaxed">&ldquo;{review}&rdquo;</p>

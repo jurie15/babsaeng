@@ -91,7 +91,7 @@ export async function searchNearbyRestaurants(
 
 // ─── KakaoPlace → NormalizedRestaurant 변환 ──────────────────────────────────
 
-const CATEGORY_REVIEW_STUBS: Record<string, string[]> = {
+export const CATEGORY_REVIEW_STUBS: Record<string, string[]> = {
   한식: [
     "국물이 진하고 반찬이 넉넉해서 매번 생각나는 곳이에요",
     "정갈한 한 상 차림이 인상적이고 재료가 신선해요",
