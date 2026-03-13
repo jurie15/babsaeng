@@ -12,6 +12,20 @@ import {
   type NormalizedRestaurant,
 } from "@/lib/kakao";
 
+// ─── 카카오 SDK 전역 타입 ──────────────────────────────────────────────────────
+
+declare global {
+  interface Window {
+    Kakao: {
+      init: (key: string) => void;
+      isInitialized: () => boolean;
+      Share: {
+        sendDefault: (params: object) => void;
+      };
+    };
+  }
+}
+
 // ─── 타입 ────────────────────────────────────────────────────────────────────
 
 type RecommendedMenu = {
@@ -203,19 +217,21 @@ function MenuPhotoSlider({ menus, category }: { menus: RecommendedMenu[]; catego
   );
 }
 
-// ─── 카카오 공유 ─────────────────────────────────────────────────────────────
+// ─── 카카오 SDK 로드 헬퍼 ─────────────────────────────────────────────────────
 
-function mockKakaoShare(restaurant: Restaurant) {
-  const menus = restaurant.recommendedMenus.map((m) => m.name).join(", ");
-  const message = [
-    `🍽️ ${restaurant.name}`,
-    `📍 ${restaurant.address}`,
-    `⭐ ${restaurant.rating.toFixed(1)} · 추천 메뉴: ${menus}`,
-    "",
-    "밥선생에서 내 근처 맛집 추천받기 → https://babsaeng.app",
-  ].join("\n");
-  if (navigator.clipboard) navigator.clipboard.writeText(message).catch(() => {});
-  alert(`[카카오톡 공유 - 개발 중]\n\n${message}`);
+function loadKakaoSdk() {
+  if (document.getElementById("kakao-sdk-script")) return;
+  const script = document.createElement("script");
+  script.id = "kakao-sdk-script";
+  script.src = "https://t1.kakaocdn.net/kakaojs/sdk/latest/kakao.min.js";
+  script.crossOrigin = "anonymous";
+  script.onload = () => {
+    const key = process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY;
+    if (key && window.Kakao && !window.Kakao.isInitialized()) {
+      window.Kakao.init(key);
+    }
+  };
+  document.head.appendChild(script);
 }
 
 // ─── mock 데이터 헬퍼 ────────────────────────────────────────────────────────
@@ -436,6 +452,7 @@ export default function ResultPage() {
 
   useEffect(() => {
     loadPool();
+    loadKakaoSdk();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -471,20 +488,43 @@ export default function ResultPage() {
     setShowNavSheet(false);
     if ("lat" in current && current.lat && current.lng) {
       const name = encodeURIComponent(current.name);
-      const kakaoNav = `https://map.kakao.com/link/to/${name},${current.lat},${current.lng}`;
       const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+      const tmapWeb = `https://tmap.life/${name}`;
       if (isMobile) {
         const tmapDeep = `tmap://route?goalname=${name}&goaly=${current.lat}&goalx=${current.lng}&reqCoordType=WGS84GEO&resCoordType=WGS84GEO`;
-        const link = document.createElement("a");
-        link.href = tmapDeep;
-        link.click();
-        setTimeout(() => { if (!document.hidden) window.location.href = kakaoNav; }, 2000);
+        let didHide = false;
+        const onVisibilityChange = () => { if (document.hidden) didHide = true; };
+        document.addEventListener("visibilitychange", onVisibilityChange);
+        window.location.href = tmapDeep;
+        setTimeout(() => {
+          document.removeEventListener("visibilitychange", onVisibilityChange);
+          if (!didHide) window.open(tmapWeb, "_blank");
+        }, 2000);
       } else {
-        window.open(kakaoNav, "_blank");
+        window.open(tmapWeb, "_blank");
       }
     } else {
       window.open(getKakaoFallback(current), "_blank");
     }
+  }
+
+  function handleKakaoShare() {
+    if (!current) return;
+    if (!window.Kakao?.Share) {
+      alert("카카오 SDK를 불러오는 중이에요. 잠시 후 다시 시도해주세요.");
+      return;
+    }
+    const placeUrl = "placeUrl" in current && current.placeUrl
+      ? current.placeUrl
+      : `https://map.kakao.com/link/search/${encodeURIComponent(current.name)}`;
+    window.Kakao.Share.sendDefault({
+      objectType: "text",
+      text: `🍽️ ${current.name}\n⭐ ${current.rating.toFixed(1)} · ${current.category}\n📍 ${current.address}\n\n밥선생에서 내 근처 맛집 추천받기 👉`,
+      link: {
+        mobileWebUrl: placeUrl,
+        webUrl: placeUrl,
+      },
+    });
   }
 
   function handleCall() {
@@ -653,7 +693,7 @@ export default function ResultPage() {
                   onClick={() => {
                     const name = encodeURIComponent(current.name);
                     window.open(
-                      `https://search.naver.com/search.naver?query=${name}&where=nexearch&sm=top_hty&fbm=0&ie=utf8`,
+                      `https://map.naver.com/p/search/${name}`,
                       "_blank"
                     );
                   }}
@@ -721,7 +761,7 @@ export default function ResultPage() {
 
               {/* 카톡공유 */}
               <button
-                onClick={() => mockKakaoShare(current)}
+                onClick={handleKakaoShare}
                 className="flex flex-col items-center justify-center gap-1.5 py-3 rounded-2xl bg-white shadow-sm border border-gray-100"
                 style={{ minHeight: "72px" }}
               >
