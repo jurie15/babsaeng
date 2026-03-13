@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useFilterStore } from "@/lib/store";
 
@@ -35,7 +35,7 @@ const TRAVEL_OPTIONS = [
   { label: "배달", emoji: "🛵", desc: "배달로 주문해요" },
 ];
 
-export default function FilterPage() {
+function FilterPageInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const {
@@ -282,5 +282,13 @@ export default function FilterPage() {
         </button>
       </div>
     </main>
+  );
+}
+
+export default function FilterPage() {
+  return (
+    <Suspense>
+      <FilterPageInner />
+    </Suspense>
   );
 }
