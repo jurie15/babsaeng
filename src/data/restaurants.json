@@ -1,0 +1,272 @@
+{
+  "한식": [
+    {
+      "id": 101,
+      "name": "엄마손 한정식",
+      "address": "서울시 강남구 역삼동 123-4",
+      "phone": "02-1234-5678",
+      "rating": 4.5,
+      "reviewCount": 3840,
+      "reviewSummary": "된장찌개가 진하고 반찬이 넉넉해서 항상 배부르게 먹어요",
+      "hasParking": true,
+      "category": "한식",
+      "recommendedMenus": [
+        { "name": "된장찌개 정식", "price": 9000, "emoji": "🍲", "isSignature": true },
+        { "name": "제육볶음", "price": 10000, "emoji": "🥩" },
+        { "name": "순두부찌개", "price": 9000, "emoji": "🥘" }
+      ]
+    },
+    {
+      "id": 102,
+      "name": "삼겹살 고을",
+      "address": "서울시 마포구 합정동 55-2",
+      "phone": "02-9876-5432",
+      "rating": 4.3,
+      "reviewCount": 612,
+      "reviewSummary": "고기 두께가 적당하고 밑반찬이 계속 리필돼서 좋아요",
+      "hasParking": false,
+      "category": "한식",
+      "recommendedMenus": [
+        { "name": "삼겹살", "price": 16000, "emoji": "🥓", "isSignature": true },
+        { "name": "목살", "price": 17000, "emoji": "🍖" },
+        { "name": "냉면", "price": 9000, "emoji": "🍜" }
+      ]
+    },
+    {
+      "id": 103,
+      "name": "참솔 비빔밥",
+      "address": "서울시 종로구 인사동 34-1",
+      "phone": "02-3333-4444",
+      "rating": 4.7,
+      "reviewCount": 7214,
+      "reviewSummary": "나물이 신선하고 돌솥에 나와서 바닥 누룽지까지 맛있어요",
+      "hasParking": false,
+      "category": "한식",
+      "recommendedMenus": [
+        { "name": "돌솥비빔밥", "price": 11000, "emoji": "🍚", "isSignature": true },
+        { "name": "불고기 덮밥", "price": 12000, "emoji": "🥩" },
+        { "name": "미역국", "price": 8000, "emoji": "🍵" }
+      ]
+    }
+  ],
+  "중식": [
+    {
+      "id": 201,
+      "name": "홍콩반점",
+      "address": "서울시 중구 명동 11-3",
+      "phone": "02-7777-8888",
+      "rating": 4.4,
+      "reviewCount": 5923,
+      "reviewSummary": "짜장면 면이 쫄깃하고 소스가 달콤해서 아이들도 좋아해요",
+      "hasParking": true,
+      "category": "중식",
+      "recommendedMenus": [
+        { "name": "짜장면", "price": 7000, "emoji": "🍜", "isSignature": true },
+        { "name": "짬뽕", "price": 8000, "emoji": "🥣" },
+        { "name": "탕수육", "price": 18000, "emoji": "🍖" }
+      ]
+    },
+    {
+      "id": 202,
+      "name": "사천 마라탕",
+      "address": "서울시 홍대입구 와우산로 77",
+      "phone": "02-5555-6666",
+      "rating": 4.2,
+      "reviewCount": 287,
+      "reviewSummary": "마라 향이 진짜고 재료가 신선해서 계속 생각나는 맛이에요",
+      "hasParking": false,
+      "category": "중식",
+      "recommendedMenus": [
+        { "name": "마라탕", "price": 14000, "emoji": "🌶️", "isSignature": true },
+        { "name": "마라샹궈", "price": 16000, "emoji": "🥘" },
+        { "name": "딤섬 세트", "price": 12000, "emoji": "🥟" }
+      ]
+    }
+  ],
+  "일식": [
+    {
+      "id": 301,
+      "name": "스시 오마카세 유",
+      "address": "서울시 강남구 청담동 100-5",
+      "phone": "02-2222-3333",
+      "rating": 4.8,
+      "reviewCount": 78,
+      "reviewSummary": "재료가 신선하고 셰프님이 설명해주셔서 더 맛있게 먹었어요",
+      "hasParking": true,
+      "category": "일식",
+      "recommendedMenus": [
+        { "name": "오마카세 런치", "price": 45000, "emoji": "🍣", "isSignature": true },
+        { "name": "연어 사시미", "price": 22000, "emoji": "🐟" },
+        { "name": "우니 군함", "price": 8000, "emoji": "🥢" }
+      ]
+    },
+    {
+      "id": 302,
+      "name": "이치방 라멘",
+      "address": "서울시 이태원동 44-9",
+      "phone": "02-8888-9999",
+      "rating": 4.5,
+      "reviewCount": 4455,
+      "reviewSummary": "돈코츠 국물이 진하고 차슈가 부드러워서 자주 오게 돼요",
+      "hasParking": false,
+      "category": "일식",
+      "recommendedMenus": [
+        { "name": "돈코츠 라멘", "price": 13000, "emoji": "🍜", "isSignature": true },
+        { "name": "쇼유 라멘", "price": 12000, "emoji": "🍵" },
+        { "name": "교자 만두", "price": 7000, "emoji": "🥟" }
+      ]
+    },
+    {
+      "id": 303,
+      "name": "사쿠라 우동",
+      "address": "서울시 신촌 연세로 15",
+      "phone": "02-4444-5555",
+      "rating": 4.1,
+      "reviewCount": 1730,
+      "reviewSummary": "우동 면이 탱탱하고 가격 대비 양이 많아서 만족스러워요",
+      "hasParking": false,
+      "category": "일식",
+      "recommendedMenus": [
+        { "name": "가케우동", "price": 9000, "emoji": "🍜", "isSignature": true },
+        { "name": "카레우동", "price": 10000, "emoji": "🍛" },
+        { "name": "텐동", "price": 14000, "emoji": "🍤" }
+      ]
+    }
+  ],
+  "양식": [
+    {
+      "id": 401,
+      "name": "브라세리 파리",
+      "address": "서울시 강남구 신사동 가로수길 33",
+      "phone": "02-6666-7777",
+      "rating": 4.6,
+      "reviewCount": 391,
+      "reviewSummary": "파스타가 알덴테로 나오고 와인 페어링 추천이 훌륭해요",
+      "hasParking": true,
+      "category": "양식",
+      "recommendedMenus": [
+        { "name": "까르보나라", "price": 16000, "emoji": "🍝", "isSignature": true },
+        { "name": "뇨끼 크림소스", "price": 17000, "emoji": "🥘" },
+        { "name": "시저 샐러드", "price": 12000, "emoji": "🥗" }
+      ]
+    },
+    {
+      "id": 402,
+      "name": "스테이크하우스 제이",
+      "address": "서울시 서초구 반포동 22-8",
+      "phone": "02-1111-2222",
+      "rating": 4.7,
+      "reviewCount": 54,
+      "reviewSummary": "숙성 등심이 부드럽고 소스가 풍부해서 특별한 날 오기 딱 좋아요",
+      "hasParking": true,
+      "category": "양식",
+      "recommendedMenus": [
+        { "name": "등심 스테이크 200g", "price": 38000, "emoji": "🥩", "isSignature": true },
+        { "name": "안심 스테이크 150g", "price": 42000, "emoji": "🍖" },
+        { "name": "머쉬룸 수프", "price": 9000, "emoji": "🍲" }
+      ]
+    }
+  ],
+  "분식": [
+    {
+      "id": 501,
+      "name": "옛날 떡볶이 집",
+      "address": "서울시 신림동 순대타운 4호",
+      "phone": "02-3030-4040",
+      "rating": 4.4,
+      "reviewCount": 8012,
+      "reviewSummary": "떡볶이 국물이 달콤하고 순대가 두툼해서 가성비 최고예요",
+      "hasParking": false,
+      "category": "분식",
+      "recommendedMenus": [
+        { "name": "떡볶이", "price": 5000, "emoji": "🍢", "isSignature": true },
+        { "name": "순대", "price": 5000, "emoji": "🌭" },
+        { "name": "튀김 모듬", "price": 3000, "emoji": "🍤" }
+      ]
+    },
+    {
+      "id": 502,
+      "name": "쫄깃 김밥천국",
+      "address": "서울시 노원구 공릉동 11",
+      "phone": "02-9090-8080",
+      "rating": 4.0,
+      "reviewCount": 2680,
+      "reviewSummary": "참치김밥이 신선하고 라면이 얼큰해서 점심에 자주 와요",
+      "hasParking": false,
+      "category": "분식",
+      "recommendedMenus": [
+        { "name": "참치김밥", "price": 4500, "emoji": "🍱", "isSignature": true },
+        { "name": "라볶이", "price": 7000, "emoji": "🍜" },
+        { "name": "치즈 돈까스", "price": 8000, "emoji": "🍖" }
+      ]
+    }
+  ],
+  "패스트푸드": [
+    {
+      "id": 601,
+      "name": "버거 팩토리",
+      "address": "서울시 홍대 어울마당로 22",
+      "phone": "02-7070-6060",
+      "rating": 4.3,
+      "reviewCount": 143,
+      "reviewSummary": "패티가 두껍고 재료가 신선해서 프리미엄 버거 맛이 나요",
+      "hasParking": false,
+      "category": "패스트푸드",
+      "recommendedMenus": [
+        { "name": "더블 스모키 버거", "price": 14000, "emoji": "🍔", "isSignature": true },
+        { "name": "치킨 버거", "price": 12000, "emoji": "🍗" },
+        { "name": "감자튀김 L", "price": 4000, "emoji": "🍟" }
+      ]
+    },
+    {
+      "id": 602,
+      "name": "치킨 공화국",
+      "address": "서울시 건대입구 능동로 88",
+      "phone": "02-5050-4040",
+      "rating": 4.2,
+      "reviewCount": 6701,
+      "reviewSummary": "후라이드가 바삭하고 양념이 달콤매콤해서 맥주랑 찰떡이에요",
+      "hasParking": true,
+      "category": "패스트푸드",
+      "recommendedMenus": [
+        { "name": "후라이드 치킨 반마리", "price": 9000, "emoji": "🍗", "isSignature": true },
+        { "name": "양념 치킨 반마리", "price": 9000, "emoji": "🌶️" },
+        { "name": "치킨 너겟", "price": 7000, "emoji": "🍖" }
+      ]
+    }
+  ],
+  "아시안": [
+    {
+      "id": 701,
+      "name": "쌀국수 하노이",
+      "address": "서울시 이태원동 녹사평대로 66",
+      "phone": "02-2020-3030",
+      "rating": 4.5,
+      "reviewCount": 509,
+      "reviewSummary": "육수가 깊고 고수 향이 적당해서 처음 먹는 분도 좋아해요",
+      "hasParking": false,
+      "category": "아시안",
+      "recommendedMenus": [
+        { "name": "소고기 쌀국수", "price": 11000, "emoji": "🍜", "isSignature": true },
+        { "name": "분짜", "price": 12000, "emoji": "🥗" },
+        { "name": "스프링롤", "price": 8000, "emoji": "🥢" }
+      ]
+    },
+    {
+      "id": 702,
+      "name": "타이 키친",
+      "address": "서울시 용산구 한강로 55-3",
+      "phone": "02-6060-7070",
+      "rating": 4.4,
+      "reviewCount": 62,
+      "reviewSummary": "팟타이 면이 쫄깃하고 그린커리가 진해서 태국 현지 느낌이에요",
+      "hasParking": false,
+      "category": "아시안",
+      "recommendedMenus": [
+        { "name": "팟타이", "price": 13000, "emoji": "🍜", "isSignature": true },
+        { "name": "그린 커리", "price": 14000, "emoji": "🍛" },
+        { "name": "망고 찹쌀밥", "price": 8000, "emoji": "🥭" }
+      ]
+    }
+  ]
+}

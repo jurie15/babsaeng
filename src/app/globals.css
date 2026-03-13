@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===========================
+   밥선생 - 모바일 기본 세팅
+   기준: 375px (iPhone SE / 기본 모바일)
+   토스 포인트 컬러: #0064FF
+   =========================== */
+
+:root {
+  --toss-blue: #0064FF;
+  --toss-blue-light: #E8F1FF;
+  --toss-blue-dark: #0052D6;
+  --background: #F9FAFB;
+  --foreground: #111827;
+  --surface: #FFFFFF;
+  --border: #E5E7EB;
+  --text-secondary: #6B7280;
+  --safe-area-top: env(safe-area-inset-top);
+  --safe-area-bottom: env(safe-area-inset-bottom);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* 모바일 텍스트 선택 제한 (앱 느낌) */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* 모바일 뷰 컨테이너 */
+#__next,
+main {
+  max-width: 375px;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--background);
+}
+
+/* Safe Area 대응 */
+.safe-top {
+  padding-top: var(--safe-area-top);
+}
+
+.safe-bottom {
+  padding-bottom: var(--safe-area-bottom);
+}
+
+/* 스크롤바 숨김 (모바일 앱 느낌) */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* 버튼 기본 스타일 */
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:active {
+  opacity: 0.8;
+}
+
+/* 링크 기본 스타일 */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 입력 필드 */
+input,
+textarea,
+select {
+  font-family: inherit;
+  outline: none;
+}
+
+/* 이미지 */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ===========================
+   공통 컴포넌트 스타일
+   =========================== */
+
+@layer components {
+  /* 토스 스타일 기본 버튼 */
+  .btn-primary {
+    @apply w-full py-4 rounded-2xl font-semibold text-base text-white transition-all duration-150;
+    background-color: var(--toss-blue);
+  }
+
+  .btn-primary:active {
+    background-color: var(--toss-blue-dark);
+  }
+
+  .btn-secondary {
+    @apply w-full py-4 rounded-2xl font-semibold text-base transition-all duration-150;
+    background-color: var(--toss-blue-light);
+    color: var(--toss-blue);
+  }
+
+  /* 카드 */
+  .card {
+    @apply bg-white rounded-2xl p-4 shadow-sm;
+  }
+
+  /* 칩/태그 */
+  .chip {
+    @apply inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium border transition-all duration-150;
+  }
+
+  .chip-active {
+    color: var(--toss-blue);
+    background-color: var(--toss-blue-light);
+    border-color: var(--toss-blue);
+  }
+
+  .chip-inactive {
+    @apply text-gray-500 bg-gray-100 border-gray-200;
+  }
+
+  /* 섹션 타이틀 */
+  .section-title {
+    @apply text-lg font-bold text-gray-900 mb-3;
+  }
+
+  /* 페이지 컨테이너 */
+  .page-container {
+    @apply min-h-screen flex flex-col;
+    padding-bottom: calc(80px + var(--safe-area-bottom));
+  }
+}

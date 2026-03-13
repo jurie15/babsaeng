@@ -1,0 +1,911 @@
+{
+  "한식": [
+    {
+      "id": 1,
+      "name": "된장찌개",
+      "category": "한식",
+      "emoji": "🍲",
+      "description": "구수한 된장에 두부와 채소를 넣어 끓인 한국 전통 찌개",
+      "avgPrice": 8000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["구수함", "건강식", "밥도둑", "국물"]
+    },
+    {
+      "id": 2,
+      "name": "김치찌개",
+      "category": "한식",
+      "emoji": "🥘",
+      "description": "잘 익은 김치와 돼지고기로 끓인 얼큰한 찌개",
+      "avgPrice": 9000,
+      "spicyLevel": 2,
+      "kidsOk": false,
+      "tags": ["얼큰함", "밥도둑", "돼지고기", "국물"]
+    },
+    {
+      "id": 3,
+      "name": "비빔밥",
+      "category": "한식",
+      "emoji": "🥗",
+      "description": "신선한 나물과 고추장, 계란을 넣어 비벼먹는 한식",
+      "avgPrice": 10000,
+      "spicyLevel": 1,
+      "kidsOk": true,
+      "tags": ["건강식", "나물", "영양만점", "한끼"]
+    },
+    {
+      "id": 4,
+      "name": "삼겹살",
+      "category": "한식",
+      "emoji": "🥓",
+      "description": "불판에 구워먹는 두툼한 돼지 삼겹살",
+      "avgPrice": 18000,
+      "spicyLevel": 0,
+      "kidsOk": false,
+      "tags": ["구이", "술안주", "회식", "삼겹"]
+    },
+    {
+      "id": 5,
+      "name": "냉면",
+      "category": "한식",
+      "emoji": "🍜",
+      "description": "시원하고 쫄깃한 면에 육수를 부어먹는 여름 별미",
+      "avgPrice": 12000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["시원함", "여름", "면요리", "담백함"]
+    },
+    {
+      "id": 6,
+      "name": "갈비탕",
+      "category": "한식",
+      "emoji": "🍖",
+      "description": "소갈비를 오래 끓여낸 진하고 담백한 탕",
+      "avgPrice": 15000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["소고기", "보양식", "담백함", "탕"]
+    },
+    {
+      "id": 7,
+      "name": "순두부찌개",
+      "category": "한식",
+      "emoji": "🫕",
+      "description": "부드러운 순두부와 해물이 들어간 얼큰한 찌개",
+      "avgPrice": 9000,
+      "spicyLevel": 2,
+      "kidsOk": false,
+      "tags": ["얼큰함", "두부", "해물", "국물"]
+    },
+    {
+      "id": 8,
+      "name": "불고기",
+      "category": "한식",
+      "emoji": "🥩",
+      "description": "달콤한 양념에 재운 소고기를 구운 한식 대표 요리",
+      "avgPrice": 16000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["소고기", "달콤함", "구이", "한식대표"]
+    },
+    {
+      "id": 9,
+      "name": "육개장",
+      "category": "한식",
+      "emoji": "🍛",
+      "description": "얼큰하고 진한 소고기 국물 요리",
+      "avgPrice": 10000,
+      "spicyLevel": 2,
+      "kidsOk": false,
+      "tags": ["얼큰함", "소고기", "국물", "든든함"]
+    },
+    {
+      "id": 10,
+      "name": "해물파전",
+      "category": "한식",
+      "emoji": "🫓",
+      "description": "쫄깃한 반죽에 해산물과 파를 넣어 부친 전",
+      "avgPrice": 13000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["해산물", "전", "막걸리안주", "고소함"]
+    }
+  ],
+  "중식": [
+    {
+      "id": 11,
+      "name": "짜장면",
+      "category": "중식",
+      "emoji": "🍜",
+      "description": "춘장 소스로 볶은 채소와 돼지고기가 올라간 면 요리",
+      "avgPrice": 7000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["달콤함", "면요리", "중식배달", "단짠"]
+    },
+    {
+      "id": 12,
+      "name": "짬뽕",
+      "category": "중식",
+      "emoji": "🦐",
+      "description": "해산물과 채소가 가득한 얼큰한 중식 국물요리",
+      "avgPrice": 9000,
+      "spicyLevel": 2,
+      "kidsOk": false,
+      "tags": ["얼큰함", "해산물", "국물", "중식배달"]
+    },
+    {
+      "id": 13,
+      "name": "마라탕",
+      "category": "중식",
+      "emoji": "🌶️",
+      "description": "마라 소스의 강렬한 향과 매운맛이 특징인 중국식 훠궈",
+      "avgPrice": 14000,
+      "spicyLevel": 2,
+      "kidsOk": false,
+      "tags": ["마라", "극매운", "트렌디", "훠궈"]
+    },
+    {
+      "id": 14,
+      "name": "탕수육",
+      "category": "중식",
+      "emoji": "🍖",
+      "description": "바삭한 튀김옷에 새콤달콤 소스를 곁들인 중식 요리",
+      "avgPrice": 18000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["바삭함", "새콤달콤", "돼지고기", "공유"]
+    },
+    {
+      "id": 15,
+      "name": "볶음밥",
+      "category": "중식",
+      "emoji": "🍳",
+      "description": "여러 재료를 넣어 고온에서 볶아낸 중국식 볶음밥",
+      "avgPrice": 9000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["든든함", "볶음", "한끼", "고소함"]
+    },
+    {
+      "id": 16,
+      "name": "딤섬",
+      "category": "중식",
+      "emoji": "🥟",
+      "description": "얇은 피에 다양한 속재료를 넣어 찐 중국 만두 요리",
+      "avgPrice": 16000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["중식", "만두", "찜", "가벼움"]
+    },
+    {
+      "id": 17,
+      "name": "마파두부",
+      "category": "중식",
+      "emoji": "🫕",
+      "description": "두부와 다진고기를 마라 소스에 볶은 사천식 요리",
+      "avgPrice": 12000,
+      "spicyLevel": 1,
+      "kidsOk": false,
+      "tags": ["마라", "두부", "사천요리", "밥도둑"]
+    },
+    {
+      "id": 18,
+      "name": "차돌짬뽕",
+      "category": "중식",
+      "emoji": "🍜",
+      "description": "차돌박이를 넣어 더욱 깊은 맛을 낸 프리미엄 짬뽕",
+      "avgPrice": 12000,
+      "spicyLevel": 2,
+      "kidsOk": false,
+      "tags": ["차돌박이", "얼큰함", "프리미엄", "국물"]
+    },
+    {
+      "id": 19,
+      "name": "깐풍기",
+      "category": "중식",
+      "emoji": "🍗",
+      "description": "바삭하게 튀긴 닭고기를 매콤달콤 소스로 버무린 요리",
+      "avgPrice": 17000,
+      "spicyLevel": 1,
+      "kidsOk": false,
+      "tags": ["닭고기", "바삭함", "매콤달콤", "술안주"]
+    },
+    {
+      "id": 20,
+      "name": "우육면",
+      "category": "중식",
+      "emoji": "🍝",
+      "description": "진한 소고기 육수에 소고기와 면을 넣은 대만식 면 요리",
+      "avgPrice": 13000,
+      "spicyLevel": 1,
+      "kidsOk": true,
+      "tags": ["소고기", "면요리", "대만식", "진한국물"]
+    }
+  ],
+  "일식": [
+    {
+      "id": 21,
+      "name": "초밥",
+      "category": "일식",
+      "emoji": "🍣",
+      "description": "신선한 생선과 초밥용 밥으로 만든 일본 전통 요리",
+      "avgPrice": 20000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["생선", "신선함", "일식대표", "특별한날"]
+    },
+    {
+      "id": 22,
+      "name": "라멘",
+      "category": "일식",
+      "emoji": "🍜",
+      "description": "진한 육수에 면과 다양한 토핑을 올린 일본식 국수",
+      "avgPrice": 12000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["면요리", "진한국물", "토핑", "든든함"]
+    },
+    {
+      "id": 23,
+      "name": "돈카츠",
+      "category": "일식",
+      "emoji": "🍱",
+      "description": "바삭하게 튀긴 돈가스에 소스를 곁들인 일본식 요리",
+      "avgPrice": 13000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["바삭함", "돼지고기", "튀김", "인기"]
+    },
+    {
+      "id": 24,
+      "name": "우동",
+      "category": "일식",
+      "emoji": "🍜",
+      "description": "쫄깃한 굵은 면과 담백한 국물의 일본식 면 요리",
+      "avgPrice": 10000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["쫄깃함", "담백함", "면요리", "따뜻함"]
+    },
+    {
+      "id": 25,
+      "name": "규동",
+      "category": "일식",
+      "emoji": "🥣",
+      "description": "달짝지근한 소고기와 양파 조림을 밥 위에 올린 덮밥",
+      "avgPrice": 9000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["소고기", "덮밥", "달콤함", "든든함"]
+    },
+    {
+      "id": 26,
+      "name": "타코야키",
+      "category": "일식",
+      "emoji": "🐙",
+      "description": "문어가 들어간 동그란 일본식 튀김볼",
+      "avgPrice": 7000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["간식", "문어", "길거리음식", "고소함"]
+    },
+    {
+      "id": 27,
+      "name": "스키야키",
+      "category": "일식",
+      "emoji": "🥩",
+      "description": "소고기와 채소를 달달한 소스에 끓여먹는 일본 전골",
+      "avgPrice": 22000,
+      "spicyLevel": 0,
+      "kidsOk": false,
+      "tags": ["소고기", "전골", "달콤함", "고급"]
+    },
+    {
+      "id": 28,
+      "name": "야키토리",
+      "category": "일식",
+      "emoji": "🍡",
+      "description": "꼬치에 꿴 닭고기를 달짝지근한 소스로 구운 요리",
+      "avgPrice": 11000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["닭고기", "꼬치", "구이", "술안주"]
+    },
+    {
+      "id": 29,
+      "name": "오코노미야키",
+      "category": "일식",
+      "emoji": "🫓",
+      "description": "여러 재료를 넣어 구운 일본식 해산물 부침개",
+      "avgPrice": 14000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["해산물", "부침개", "소스", "일본식"]
+    },
+    {
+      "id": 30,
+      "name": "카레라이스",
+      "category": "일식",
+      "emoji": "🍛",
+      "description": "부드럽고 깊은 맛의 일본식 카레를 밥과 곁들인 요리",
+      "avgPrice": 10000,
+      "spicyLevel": 1,
+      "kidsOk": true,
+      "tags": ["카레", "부드러움", "든든함", "밥"]
+    }
+  ],
+  "양식": [
+    {
+      "id": 31,
+      "name": "파스타",
+      "category": "양식",
+      "emoji": "🍝",
+      "description": "다양한 소스로 조리한 이탈리아식 면 요리",
+      "avgPrice": 14000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["면요리", "이탈리안", "데이트", "크리미"]
+    },
+    {
+      "id": 32,
+      "name": "피자",
+      "category": "양식",
+      "emoji": "🍕",
+      "description": "토핑을 올려 오븐에 구운 이탈리아식 피자",
+      "avgPrice": 18000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["이탈리안", "공유", "파티", "치즈"]
+    },
+    {
+      "id": 33,
+      "name": "스테이크",
+      "category": "양식",
+      "emoji": "🥩",
+      "description": "구운 소고기 스테이크와 사이드디시",
+      "avgPrice": 30000,
+      "spicyLevel": 0,
+      "kidsOk": false,
+      "tags": ["소고기", "특별한날", "고급", "육즙"]
+    },
+    {
+      "id": 34,
+      "name": "리조또",
+      "category": "양식",
+      "emoji": "🍚",
+      "description": "크리미한 소스로 조리한 이탈리아식 쌀 요리",
+      "avgPrice": 16000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["크리미", "이탈리안", "부드러움", "데이트"]
+    },
+    {
+      "id": 35,
+      "name": "버거",
+      "category": "양식",
+      "emoji": "🍔",
+      "description": "두툼한 패티와 신선한 채소가 들어간 수제 버거",
+      "avgPrice": 13000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["패티", "간편함", "한끼", "든든함"]
+    },
+    {
+      "id": 36,
+      "name": "샐러드",
+      "category": "양식",
+      "emoji": "🥗",
+      "description": "신선한 채소와 드레싱으로 만든 건강한 샐러드",
+      "avgPrice": 11000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["건강식", "다이어트", "신선함", "채소"]
+    },
+    {
+      "id": 37,
+      "name": "클램차우더",
+      "category": "양식",
+      "emoji": "🍲",
+      "description": "조개와 감자가 들어간 크리미한 미국식 스프",
+      "avgPrice": 12000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["스프", "크리미", "조개", "따뜻함"]
+    },
+    {
+      "id": 38,
+      "name": "그라탱",
+      "category": "양식",
+      "emoji": "🧀",
+      "description": "치즈와 크림을 올려 오븐에 구운 프렌치 요리",
+      "avgPrice": 17000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["치즈", "오븐요리", "프렌치", "고소함"]
+    },
+    {
+      "id": 39,
+      "name": "타코",
+      "category": "양식",
+      "emoji": "🌮",
+      "description": "또띠야에 고기와 채소, 살사소스를 넣은 멕시코 요리",
+      "avgPrice": 13000,
+      "spicyLevel": 1,
+      "kidsOk": true,
+      "tags": ["멕시코", "매콤함", "간편함", "손음식"]
+    },
+    {
+      "id": 40,
+      "name": "수프",
+      "category": "양식",
+      "emoji": "🍵",
+      "description": "다양한 재료로 끓인 따뜻하고 부드러운 서양식 스프",
+      "avgPrice": 9000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["따뜻함", "건강식", "부드러움", "가벼움"]
+    }
+  ],
+  "분식": [
+    {
+      "id": 41,
+      "name": "떡볶이",
+      "category": "분식",
+      "emoji": "🍢",
+      "description": "쫄깃한 떡과 어묵을 매콤한 고추장 소스에 볶은 분식",
+      "avgPrice": 5000,
+      "spicyLevel": 2,
+      "kidsOk": false,
+      "tags": ["매콤함", "쫄깃함", "국민분식", "간식"]
+    },
+    {
+      "id": 42,
+      "name": "순대",
+      "category": "분식",
+      "emoji": "🌭",
+      "description": "돼지 창자에 당면과 채소를 넣어 쪄낸 전통 분식",
+      "avgPrice": 5000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["쫄깃함", "당면", "전통", "소울푸드"]
+    },
+    {
+      "id": 43,
+      "name": "김밥",
+      "category": "분식",
+      "emoji": "🍙",
+      "description": "밥과 다양한 재료를 김에 싸서 썰어먹는 한국 분식",
+      "avgPrice": 4000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["간편함", "포장음식", "소풍", "한끼"]
+    },
+    {
+      "id": 44,
+      "name": "튀김",
+      "category": "분식",
+      "emoji": "🍤",
+      "description": "고소하게 튀긴 채소와 해산물 모둠 튀김",
+      "avgPrice": 4000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["바삭함", "고소함", "간식", "분식"]
+    },
+    {
+      "id": 45,
+      "name": "라볶이",
+      "category": "분식",
+      "emoji": "🍜",
+      "description": "라면과 떡볶이를 함께 끓인 분식집 인기 메뉴",
+      "avgPrice": 7000,
+      "spicyLevel": 2,
+      "kidsOk": false,
+      "tags": ["매콤함", "라면", "떡볶이", "분식"]
+    },
+    {
+      "id": 46,
+      "name": "쫄면",
+      "category": "분식",
+      "emoji": "🥗",
+      "description": "쫄깃한 면에 새콤달콤 고추장 소스를 비벼먹는 분식",
+      "avgPrice": 6000,
+      "spicyLevel": 1,
+      "kidsOk": false,
+      "tags": ["쫄깃함", "새콤달콤", "비빔", "여름"]
+    },
+    {
+      "id": 47,
+      "name": "핫도그",
+      "category": "분식",
+      "emoji": "🌭",
+      "description": "바삭한 반죽에 소시지를 넣어 튀긴 간식",
+      "avgPrice": 3000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["간식", "바삭함", "소시지", "길거리"]
+    },
+    {
+      "id": 48,
+      "name": "어묵탕",
+      "category": "분식",
+      "emoji": "🍢",
+      "description": "꼬치에 꿴 어묵을 따뜻한 육수에 끓인 분식",
+      "avgPrice": 4000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["따뜻함", "국물", "길거리", "겨울"]
+    },
+    {
+      "id": 49,
+      "name": "계란말이",
+      "category": "분식",
+      "emoji": "🥚",
+      "description": "채소와 달걀을 돌돌 말아 구운 부드러운 계란말이",
+      "avgPrice": 6000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["계란", "부드러움", "반찬", "고소함"]
+    },
+    {
+      "id": 50,
+      "name": "치즈볼",
+      "category": "분식",
+      "emoji": "🧀",
+      "description": "쭉 늘어나는 치즈가 가득한 바삭한 치즈볼",
+      "avgPrice": 5000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["치즈", "간식", "바삭함", "인기"]
+    }
+  ],
+  "패스트푸드": [
+    {
+      "id": 51,
+      "name": "치킨",
+      "category": "패스트푸드",
+      "emoji": "🍗",
+      "description": "바삭하고 촉촉한 후라이드 또는 양념 치킨",
+      "avgPrice": 20000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["치킨", "야식", "배달", "파티"]
+    },
+    {
+      "id": 52,
+      "name": "햄버거",
+      "category": "패스트푸드",
+      "emoji": "🍔",
+      "description": "빵 사이에 패티와 채소를 넣은 미국식 햄버거",
+      "avgPrice": 8000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["간편함", "패스트푸드", "어린이", "빠름"]
+    },
+    {
+      "id": 53,
+      "name": "피자",
+      "category": "패스트푸드",
+      "emoji": "🍕",
+      "description": "빠르게 배달되는 토핑 가득 피자",
+      "avgPrice": 20000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["배달", "치즈", "파티", "공유"]
+    },
+    {
+      "id": 54,
+      "name": "핫윙",
+      "category": "패스트푸드",
+      "emoji": "🍗",
+      "description": "매콤한 소스로 버무린 닭날개 요리",
+      "avgPrice": 12000,
+      "spicyLevel": 2,
+      "kidsOk": false,
+      "tags": ["매콤함", "닭날개", "술안주", "바삭함"]
+    },
+    {
+      "id": 55,
+      "name": "감자튀김",
+      "category": "패스트푸드",
+      "emoji": "🍟",
+      "description": "바삭하고 짭짤한 황금빛 감자튀김",
+      "avgPrice": 4000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["바삭함", "짭짤함", "간식", "곁들임"]
+    },
+    {
+      "id": 56,
+      "name": "핫도그",
+      "category": "패스트푸드",
+      "emoji": "🌭",
+      "description": "빵에 소시지를 넣은 미국식 핫도그",
+      "avgPrice": 5000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["간편함", "소시지", "빠름", "어린이"]
+    },
+    {
+      "id": 57,
+      "name": "샌드위치",
+      "category": "패스트푸드",
+      "emoji": "🥪",
+      "description": "식빵 사이에 다양한 재료를 넣은 간편한 샌드위치",
+      "avgPrice": 7000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["간편함", "빠름", "점심", "건강"]
+    },
+    {
+      "id": 58,
+      "name": "치킨버거",
+      "category": "패스트푸드",
+      "emoji": "🍔",
+      "description": "바삭하게 튀긴 닭고기 패티를 넣은 버거",
+      "avgPrice": 7000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["닭고기", "버거", "패스트푸드", "바삭함"]
+    },
+    {
+      "id": 59,
+      "name": "나초",
+      "category": "패스트푸드",
+      "emoji": "🧀",
+      "description": "바삭한 또띠야칩에 치즈소스와 살사를 곁들인 스낵",
+      "avgPrice": 8000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["간식", "치즈", "바삭함", "파티"]
+    },
+    {
+      "id": 60,
+      "name": "쉐이크",
+      "category": "패스트푸드",
+      "emoji": "🥤",
+      "description": "진하고 달콤한 밀크쉐이크",
+      "avgPrice": 5000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["달콤함", "음료", "디저트", "어린이"]
+    }
+  ],
+  "고기구이": [
+    {
+      "id": 71,
+      "name": "삼겹살",
+      "category": "고기구이",
+      "emoji": "🥓",
+      "description": "불판에 구워먹는 두툼하고 기름진 돼지 삼겹살",
+      "avgPrice": 18000,
+      "spicyLevel": 0,
+      "kidsOk": false,
+      "tags": ["구이", "술안주", "회식", "돼지고기"]
+    },
+    {
+      "id": 72,
+      "name": "갈비",
+      "category": "고기구이",
+      "emoji": "🍖",
+      "description": "양념에 재운 돼지 또는 소 갈비를 구워먹는 요리",
+      "avgPrice": 22000,
+      "spicyLevel": 0,
+      "kidsOk": false,
+      "tags": ["구이", "고기", "회식", "특별한날"]
+    },
+    {
+      "id": 73,
+      "name": "목살",
+      "category": "고기구이",
+      "emoji": "🥩",
+      "description": "부드럽고 지방이 적당히 있는 돼지 목살 구이",
+      "avgPrice": 18000,
+      "spicyLevel": 0,
+      "kidsOk": false,
+      "tags": ["구이", "돼지고기", "담백함", "술안주"]
+    },
+    {
+      "id": 74,
+      "name": "항정살",
+      "category": "고기구이",
+      "emoji": "🥩",
+      "description": "쫄깃하고 고소한 맛이 특징인 돼지 항정살 구이",
+      "avgPrice": 20000,
+      "spicyLevel": 0,
+      "kidsOk": false,
+      "tags": ["구이", "쫄깃함", "고소함", "희귀부위"]
+    },
+    {
+      "id": 75,
+      "name": "꽃등심",
+      "category": "고기구이",
+      "emoji": "🥩",
+      "description": "마블링이 풍부하고 육즙이 가득한 소 꽃등심 구이",
+      "avgPrice": 25000,
+      "spicyLevel": 0,
+      "kidsOk": false,
+      "tags": ["구이", "소고기", "마블링", "고급"]
+    }
+  ],
+  "안주": [
+    {
+      "id": 76,
+      "name": "후라이드치킨",
+      "category": "안주",
+      "emoji": "🍗",
+      "description": "바삭하게 튀긴 황금빛 후라이드 치킨",
+      "avgPrice": 20000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["바삭함", "치킨", "술안주", "야식"]
+    },
+    {
+      "id": 77,
+      "name": "감자튀김",
+      "category": "안주",
+      "emoji": "🍟",
+      "description": "바삭하고 짭짤한 황금빛 감자튀김",
+      "avgPrice": 8000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["바삭함", "짭짤함", "간식", "술안주"]
+    },
+    {
+      "id": 78,
+      "name": "파전",
+      "category": "안주",
+      "emoji": "🫓",
+      "description": "쫄깃한 반죽에 파와 해산물을 넣어 부친 전",
+      "avgPrice": 12000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["막걸리안주", "쫄깃함", "해산물", "한국식"]
+    },
+    {
+      "id": 79,
+      "name": "닭발",
+      "category": "안주",
+      "emoji": "🌶️",
+      "description": "매콤한 양념으로 버무린 쫄깃한 닭발",
+      "avgPrice": 15000,
+      "spicyLevel": 2,
+      "kidsOk": false,
+      "tags": ["매콤함", "쫄깃함", "술안주", "야식"]
+    },
+    {
+      "id": 80,
+      "name": "순대",
+      "category": "안주",
+      "emoji": "🌭",
+      "description": "돼지 창자에 당면과 채소를 넣어 쪄낸 전통 안주",
+      "avgPrice": 10000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["쫄깃함", "술안주", "전통", "소울푸드"]
+    },
+    {
+      "id": 81,
+      "name": "떡볶이",
+      "category": "안주",
+      "emoji": "🍢",
+      "description": "쫄깃한 떡과 어묵을 매콤한 소스에 볶은 안주",
+      "avgPrice": 9000,
+      "spicyLevel": 2,
+      "kidsOk": false,
+      "tags": ["매콤함", "쫄깃함", "술안주", "분식"]
+    }
+  ],
+  "아시안": [
+    {
+      "id": 61,
+      "name": "팟타이",
+      "category": "아시안",
+      "emoji": "🍜",
+      "description": "쌀국수와 새우, 땅콩을 볶은 태국 대표 요리",
+      "avgPrice": 13000,
+      "spicyLevel": 1,
+      "kidsOk": false,
+      "tags": ["태국", "쌀국수", "새우", "볶음면"]
+    },
+    {
+      "id": 62,
+      "name": "쌀국수",
+      "category": "아시안",
+      "emoji": "🍜",
+      "description": "진한 소고기 육수에 쌀로 만든 면을 넣은 베트남 요리",
+      "avgPrice": 11000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["베트남", "담백함", "국물", "건강식"]
+    },
+    {
+      "id": 63,
+      "name": "분짜",
+      "category": "아시안",
+      "emoji": "🍢",
+      "description": "숯불 돼지고기와 소면을 생채소와 함께 먹는 베트남 요리",
+      "avgPrice": 12000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["베트남", "돼지고기", "신선함", "건강식"]
+    },
+    {
+      "id": 64,
+      "name": "팟씨유",
+      "category": "아시안",
+      "emoji": "🍳",
+      "description": "넓은 쌀국수면을 간장 소스에 볶은 태국 볶음면",
+      "avgPrice": 12000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["태국", "볶음면", "쌀국수", "간장"]
+    },
+    {
+      "id": 65,
+      "name": "그린카레",
+      "category": "아시안",
+      "emoji": "🍛",
+      "description": "코코넛 밀크 기반의 향긋하고 진한 태국 카레",
+      "avgPrice": 14000,
+      "spicyLevel": 2,
+      "kidsOk": false,
+      "tags": ["태국", "카레", "코코넛", "향긋함"]
+    },
+    {
+      "id": 66,
+      "name": "나시고랭",
+      "category": "아시안",
+      "emoji": "🍳",
+      "description": "인도네시아식 볶음밥으로 달걀프라이가 올라간 요리",
+      "avgPrice": 12000,
+      "spicyLevel": 1,
+      "kidsOk": true,
+      "tags": ["인도네시아", "볶음밥", "달걀", "든든함"]
+    },
+    {
+      "id": 67,
+      "name": "미고랭",
+      "category": "아시안",
+      "emoji": "🍜",
+      "description": "인도네시아식 볶음국수",
+      "avgPrice": 12000,
+      "spicyLevel": 1,
+      "kidsOk": true,
+      "tags": ["인도네시아", "볶음면", "매콤함", "든든함"]
+    },
+    {
+      "id": 68,
+      "name": "똠얌꿍",
+      "category": "아시안",
+      "emoji": "🦐",
+      "description": "새우와 버섯이 들어간 새콤하고 매콤한 태국 수프",
+      "avgPrice": 15000,
+      "spicyLevel": 2,
+      "kidsOk": false,
+      "tags": ["태국", "새우", "매콤함", "새콤함"]
+    },
+    {
+      "id": 69,
+      "name": "버미셀리",
+      "category": "아시안",
+      "emoji": "🥗",
+      "description": "얇은 쌀국수면에 채소와 허브를 넣은 베트남 국수",
+      "avgPrice": 11000,
+      "spicyLevel": 0,
+      "kidsOk": true,
+      "tags": ["베트남", "신선함", "건강식", "가벼움"]
+    },
+    {
+      "id": 70,
+      "name": "커리",
+      "category": "아시안",
+      "emoji": "🍛",
+      "description": "향신료가 가득한 인도식 진한 카레",
+      "avgPrice": 14000,
+      "spicyLevel": 1,
+      "kidsOk": false,
+      "tags": ["인도", "향신료", "카레", "진한맛"]
+    }
+  ]
+}
