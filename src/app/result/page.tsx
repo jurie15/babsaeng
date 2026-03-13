@@ -514,8 +514,13 @@ export default function ResultPage() {
     if (isMobile && "lat" in current && current.lat && current.lng) {
       window.location.href =
         `tmap://route?goalname=${name}&goalx=${current.lng}&goaly=${current.lat}`;
+    } else if ("lat" in current && current.lat && current.lng) {
+      window.open(
+        `https://www.tmap.co.kr/tmap2/mobile/route.do?goalname=${name}&goalx=${current.lng}&goaly=${current.lat}`,
+        "_blank"
+      );
     } else {
-      window.open(`https://tmap.life/map?goalname=${name}`, "_blank");
+      window.open(`https://www.tmap.co.kr`, "_blank");
     }
   }
 
