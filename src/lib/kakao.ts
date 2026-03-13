@@ -33,6 +33,13 @@ export interface NormalizedRestaurant {
   isRealData: true;
 }
 
+export class NoResultsError extends Error {
+  constructor() {
+    super("No results");
+    this.name = "NoResultsError";
+  }
+}
+
 // ─── 위치 ────────────────────────────────────────────────────────────────────
 
 export function getCurrentPosition(timeout = 10000): Promise<GeolocationCoordinates> {
@@ -76,7 +83,7 @@ export async function searchNearbyRestaurants(
 
   const data = await res.json();
   if (!data.documents || data.documents.length === 0) {
-    throw new Error("No results");
+    throw new NoResultsError();
   }
 
   return data.documents as KakaoPlace[];

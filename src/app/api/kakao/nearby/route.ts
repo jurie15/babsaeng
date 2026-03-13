@@ -41,7 +41,7 @@ export async function GET(request: NextRequest) {
         headers: {
           Authorization: `KakaoAK ${REST_API_KEY}`,
         },
-        next: { revalidate: 60 }, // 1분 캐시
+        cache: "no-store", // 좌표가 매번 다르므로 캐시 비활성화
       }
     );
 

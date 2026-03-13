@@ -8,6 +8,7 @@ import {
   getCurrentPosition,
   searchNearbyRestaurants,
   normalizeKakaoPlace,
+  NoResultsError,
   type NormalizedRestaurant,
 } from "@/lib/kakao";
 
@@ -365,7 +366,7 @@ SwipeCard.displayName = "SwipeCard";
 
 // ─── ResultPage ──────────────────────────────────────────────────────────────
 
-type ViewMode = "loading" | "cards" | "all-passed";
+type ViewMode = "loading" | "cards" | "all-passed" | "empty";
 
 export default function ResultPage() {
   const router = useRouter();
@@ -417,6 +418,11 @@ export default function ResultPage() {
       const places = await searchNearbyRestaurants(lat, lng, foodTypes, radius);
       fullPoolRef.current = places.map(normalizeKakaoPlace);
     } catch (err) {
+      // 검색 결과 0개 — mock fallback 없이 빈 결과 화면 표시
+      if (err instanceof NoResultsError) {
+        setViewMode("empty");
+        return;
+      }
       if (err instanceof GeolocationPositionError && err.code === 1) {
         setLocationError("위치 권한이 거부됐어요. 인기 맛집으로 추천할게요.");
       }
@@ -424,7 +430,7 @@ export default function ResultPage() {
       for (let i = 0; i < 12; i++) pool.push(pickMockRestaurant(budget, foodTypes, hasParking));
       fullPoolRef.current = pool;
     } finally {
-      startBatch(0);
+      if (fullPoolRef.current.length > 0) startBatch(0);
     }
   }
 
@@ -506,6 +512,31 @@ export default function ResultPage() {
             <p className="text-base font-medium text-gray-500">
               {loadingStep === "location" ? "현재 위치 확인 중..." : "근처 맛집 찾는 중..."}
             </p>
+          </div>
+        )}
+
+        {/* ── 검색 결과 없음 ───────────────────────────────────────────── */}
+        {viewMode === "empty" && (
+          <div className="flex flex-col items-center justify-center gap-4 pt-20">
+            <div className="text-6xl">😢</div>
+            <p className="text-xl font-bold text-gray-900">이 근방엔 없네요</p>
+            <p className="text-sm text-gray-400 text-center leading-relaxed">
+              이 근방에는 조건에 맞는 식당이 없어요 😢<br />
+              필터를 바꿔볼까요?
+            </p>
+            <button
+              onClick={() => router.push("/filter")}
+              className="mt-2 px-6 py-3.5 rounded-2xl font-semibold text-sm text-white"
+              style={{ backgroundColor: "#0064FF" }}
+            >
+              필터 다시 설정하기
+            </button>
+            <button
+              onClick={() => router.push("/")}
+              className="text-sm text-gray-400 underline underline-offset-2"
+            >
+              처음부터 다시하기
+            </button>
           </div>
         )}
 
