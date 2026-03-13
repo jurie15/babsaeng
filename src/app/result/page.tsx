@@ -219,42 +219,38 @@ function MenuPhotoSlider({ menus, category }: { menus: RecommendedMenu[]; catego
 
 // ─── 카카오 SDK 로드 헬퍼 ─────────────────────────────────────────────────────
 
-function initKakaoSdk(): Promise<void> {
-  return new Promise((resolve) => {
+// 모듈 레벨 — 여러 번 호출해도 스크립트는 한 번만 로드
+let _kakaoSdkPromise: Promise<boolean> | null = null;
+
+function ensureKakaoSdk(): Promise<boolean> {
+  if (_kakaoSdkPromise) return _kakaoSdkPromise;
+
+  _kakaoSdkPromise = new Promise((resolve) => {
     const key = process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY;
-    if (!key) { resolve(); return; }
+    if (!key) { resolve(false); return; }
 
-    // 이미 초기화 완료
-    if (window.Kakao?.isInitialized()) { resolve(); return; }
-
-    // SDK 로드됐지만 초기화 안 된 경우
-    if (window.Kakao && !window.Kakao.isInitialized()) {
-      window.Kakao.init(key);
-      resolve();
-      return;
-    }
-
-    // SDK 미로드 → 스크립트 추가 후 초기화
-    const existing = document.getElementById("kakao-sdk-script");
-    if (existing) {
-      // 스크립트는 있지만 아직 로드 중 → onload 대기
-      existing.addEventListener("load", () => {
-        if (window.Kakao && !window.Kakao.isInitialized()) window.Kakao.init(key);
-        resolve();
-      });
-      return;
-    }
-    const script = document.createElement("script");
-    script.id = "kakao-sdk-script";
-    script.src = "https://t1.kakaocdn.net/kakaojs/sdk/latest/kakao.min.js";
-    script.crossOrigin = "anonymous";
-    script.onload = () => {
-      if (window.Kakao && !window.Kakao.isInitialized()) window.Kakao.init(key);
-      resolve();
+    const doInit = () => {
+      try {
+        if (!window.Kakao.isInitialized()) window.Kakao.init(key);
+        resolve(true);
+      } catch {
+        resolve(false);
+      }
     };
-    script.onerror = () => resolve(); // 로드 실패해도 Promise는 resolve
+
+    if (typeof window.Kakao !== "undefined") {
+      doInit();
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://t1.kakaocdn.net/kakaojs/sdk/latest/kakao.min.js";
+    script.onload = doInit;
+    script.onerror = () => { _kakaoSdkPromise = null; resolve(false); };
     document.head.appendChild(script);
   });
+
+  return _kakaoSdkPromise;
 }
 
 // ─── mock 데이터 헬퍼 ────────────────────────────────────────────────────────
@@ -475,7 +471,7 @@ export default function ResultPage() {
 
   useEffect(() => {
     loadPool();
-    initKakaoSdk();
+    ensureKakaoSdk();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -510,35 +506,52 @@ export default function ResultPage() {
     if (!current) return;
     setShowNavSheet(false);
     const name = encodeURIComponent(current.name);
+    const hasCoords = "lat" in current && current.lat && current.lng;
     const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
-    if (isMobile && "lat" in current && current.lat && current.lng) {
+
+    if (isMobile && hasCoords) {
       window.location.href =
         `tmap://route?goalname=${name}&goalx=${current.lng}&goaly=${current.lat}`;
-    } else if ("lat" in current && current.lat && current.lng) {
+    } else if (hasCoords) {
+      // 데스크톱: tmap.life → 실패 시 카카오맵 fallback
       window.open(
-        `https://www.tmap.co.kr/tmap2/mobile/route.do?goalname=${name}&goalx=${current.lng}&goaly=${current.lat}`,
+        `https://tmap.life/map?goalname=${name}&goalx=${current.lng}&goaly=${current.lat}`,
         "_blank"
       );
     } else {
-      window.open(`https://www.tmap.co.kr`, "_blank");
+      window.open(getKakaoFallback(current), "_blank");
     }
   }
 
   async function handleKakaoShare() {
     if (!current) return;
-    await initKakaoSdk();
-    if (!window.Kakao?.Share) return;
-    const placeUrl = "placeUrl" in current && current.placeUrl
-      ? current.placeUrl
-      : `https://map.kakao.com/link/search/${encodeURIComponent(current.name)}`;
-    window.Kakao.Share.sendDefault({
-      objectType: "text",
-      text: `🍽️ ${current.name}\n⭐ ${current.rating.toFixed(1)} · ${current.category}\n📍 ${current.address}\n\n밥선생에서 내 근처 맛집 추천받기 👉`,
-      link: {
-        mobileWebUrl: placeUrl,
-        webUrl: placeUrl,
-      },
-    });
+
+    const shareText = `🍽️ ${current.name}\n⭐ ${current.rating.toFixed(1)} · ${current.category}\n📍 ${current.address}\n\n밥선생에서 내 근처 맛집 추천받기 👉 https://babsaeng.vercel.app`;
+
+    const ready = await ensureKakaoSdk();
+    if (ready && window.Kakao?.Share) {
+      try {
+        window.Kakao.Share.sendDefault({
+          objectType: "text",
+          text: shareText,
+          link: {
+            mobileWebUrl: "https://babsaeng.vercel.app",
+            webUrl: "https://babsaeng.vercel.app",
+          },
+        });
+        return;
+      } catch {
+        // SDK 실패 시 아래 fallback으로
+      }
+    }
+
+    // Kakao SDK 실패 → Web Share API → 클립보드 복사
+    if (navigator.share) {
+      navigator.share({ title: current.name, text: shareText }).catch(() => {});
+    } else {
+      await navigator.clipboard.writeText(shareText).catch(() => {});
+      alert("공유 내용이 클립보드에 복사됐어요!");
+    }
   }
 
   function handleCall() {
