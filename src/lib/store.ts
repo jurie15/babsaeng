@@ -12,7 +12,6 @@ type FilterState = {
   budget: number;
   foodTypes: string[];
   people: number;
-  spicy: string;
   withKids: boolean;
   travelMode: string;
   hasParking: boolean;
@@ -21,7 +20,6 @@ type FilterState = {
   setBudget: (budget: number) => void;
   toggleFoodType: (type: string) => void;
   setPeople: (people: number) => void;
-  setSpicy: (spicy: string) => void;
   setWithKids: (withKids: boolean) => void;
   setTravelMode: (mode: string) => void;
   setHasParking: (hasParking: boolean) => void;
@@ -34,7 +32,6 @@ const initialState = {
   budget: 0,
   foodTypes: [],
   people: 1,
-  spicy: "상관없음",
   withKids: false,
   travelMode: "도보",
   hasParking: false,
@@ -54,8 +51,6 @@ export const useFilterStore = create<FilterState>((set) => ({
     })),
 
   setPeople: (people) => set({ people }),
-
-  setSpicy: (spicy) => set({ spicy }),
 
   setWithKids: (withKids) => set({ withKids }),
 

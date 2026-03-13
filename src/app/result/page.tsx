@@ -219,19 +219,42 @@ function MenuPhotoSlider({ menus, category }: { menus: RecommendedMenu[]; catego
 
 // ─── 카카오 SDK 로드 헬퍼 ─────────────────────────────────────────────────────
 
-function loadKakaoSdk() {
-  if (document.getElementById("kakao-sdk-script")) return;
-  const script = document.createElement("script");
-  script.id = "kakao-sdk-script";
-  script.src = "https://t1.kakaocdn.net/kakaojs/sdk/latest/kakao.min.js";
-  script.crossOrigin = "anonymous";
-  script.onload = () => {
+function initKakaoSdk(): Promise<void> {
+  return new Promise((resolve) => {
     const key = process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY;
-    if (key && window.Kakao && !window.Kakao.isInitialized()) {
+    if (!key) { resolve(); return; }
+
+    // 이미 초기화 완료
+    if (window.Kakao?.isInitialized()) { resolve(); return; }
+
+    // SDK 로드됐지만 초기화 안 된 경우
+    if (window.Kakao && !window.Kakao.isInitialized()) {
       window.Kakao.init(key);
+      resolve();
+      return;
     }
-  };
-  document.head.appendChild(script);
+
+    // SDK 미로드 → 스크립트 추가 후 초기화
+    const existing = document.getElementById("kakao-sdk-script");
+    if (existing) {
+      // 스크립트는 있지만 아직 로드 중 → onload 대기
+      existing.addEventListener("load", () => {
+        if (window.Kakao && !window.Kakao.isInitialized()) window.Kakao.init(key);
+        resolve();
+      });
+      return;
+    }
+    const script = document.createElement("script");
+    script.id = "kakao-sdk-script";
+    script.src = "https://t1.kakaocdn.net/kakaojs/sdk/latest/kakao.min.js";
+    script.crossOrigin = "anonymous";
+    script.onload = () => {
+      if (window.Kakao && !window.Kakao.isInitialized()) window.Kakao.init(key);
+      resolve();
+    };
+    script.onerror = () => resolve(); // 로드 실패해도 Promise는 resolve
+    document.head.appendChild(script);
+  });
 }
 
 // ─── mock 데이터 헬퍼 ────────────────────────────────────────────────────────
@@ -452,7 +475,7 @@ export default function ResultPage() {
 
   useEffect(() => {
     loadPool();
-    loadKakaoSdk();
+    initKakaoSdk();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -486,34 +509,20 @@ export default function ResultPage() {
   function handleTmapNav() {
     if (!current) return;
     setShowNavSheet(false);
-    if ("lat" in current && current.lat && current.lng) {
-      const name = encodeURIComponent(current.name);
-      const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
-      const tmapWeb = `https://tmap.life/${name}`;
-      if (isMobile) {
-        const tmapDeep = `tmap://route?goalname=${name}&goaly=${current.lat}&goalx=${current.lng}&reqCoordType=WGS84GEO&resCoordType=WGS84GEO`;
-        let didHide = false;
-        const onVisibilityChange = () => { if (document.hidden) didHide = true; };
-        document.addEventListener("visibilitychange", onVisibilityChange);
-        window.location.href = tmapDeep;
-        setTimeout(() => {
-          document.removeEventListener("visibilitychange", onVisibilityChange);
-          if (!didHide) window.open(tmapWeb, "_blank");
-        }, 2000);
-      } else {
-        window.open(tmapWeb, "_blank");
-      }
+    const name = encodeURIComponent(current.name);
+    const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+    if (isMobile && "lat" in current && current.lat && current.lng) {
+      window.location.href =
+        `tmap://route?goalname=${name}&goalx=${current.lng}&goaly=${current.lat}`;
     } else {
-      window.open(getKakaoFallback(current), "_blank");
+      window.open(`https://tmap.life/map?goalname=${name}`, "_blank");
     }
   }
 
-  function handleKakaoShare() {
+  async function handleKakaoShare() {
     if (!current) return;
-    if (!window.Kakao?.Share) {
-      alert("카카오 SDK를 불러오는 중이에요. 잠시 후 다시 시도해주세요.");
-      return;
-    }
+    await initKakaoSdk();
+    if (!window.Kakao?.Share) return;
     const placeUrl = "placeUrl" in current && current.placeUrl
       ? current.placeUrl
       : `https://map.kakao.com/link/search/${encodeURIComponent(current.name)}`;

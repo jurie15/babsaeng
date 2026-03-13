@@ -22,13 +22,6 @@ const PEOPLE_OPTIONS = [
   { label: "5명 이상", value: 5, emoji: "👥" },
 ];
 
-const SPICY_OPTIONS = [
-  { label: "안매워요", emoji: "😊" },
-  { label: "약간 매워요", emoji: "🌶️" },
-  { label: "많이 매워요", emoji: "🔥" },
-  { label: "상관없음", emoji: "✨" },
-];
-
 const TRAVEL_OPTIONS = [
   { label: "도보", emoji: "🚶", desc: "걸어서 이동해요" },
   { label: "차량", emoji: "🚗", desc: "차로 이동해요" },
@@ -41,17 +34,15 @@ function FilterPageInner() {
   const {
     foodTypes,
     people,
-    spicy,
     withKids,
     travelMode,
     hasParking,
     toggleFoodType,
     setPeople,
-    setSpicy,
     setWithKids,
     setTravelMode,
     setHasParking,
-  setBudget,
+    setBudget,
   } = useFilterStore();
 
   // 홈에서 URL 파라미터로 전달된 budget을 store에 저장
@@ -199,43 +190,6 @@ function FilterPageInner() {
               </button>
             </div>
           )}
-        </section>
-
-        {/* 매운맛 */}
-        <section>
-          <h2 className="section-title">매운맛</h2>
-          <div className="flex flex-col gap-2">
-            {SPICY_OPTIONS.map((option) => {
-              const isSelected = spicy === option.label;
-              return (
-                <button
-                  key={option.label}
-                  onClick={() => setSpicy(option.label)}
-                  className="flex items-center gap-3 px-4 py-3 rounded-2xl border-2 transition-all duration-150 text-left"
-                  style={{
-                    borderColor: isSelected ? "#0064FF" : "#E5E7EB",
-                    backgroundColor: isSelected ? "#E8F1FF" : "#FFFFFF",
-                  }}
-                >
-                  <span className="text-xl">{option.emoji}</span>
-                  <span
-                    className="text-sm font-semibold"
-                    style={{ color: isSelected ? "#0064FF" : "#374151" }}
-                  >
-                    {option.label}
-                  </span>
-                  {isSelected && (
-                    <span
-                      className="ml-auto font-bold"
-                      style={{ color: "#0064FF" }}
-                    >
-                      ✓
-                    </span>
-                  )}
-                </button>
-              );
-            })}
-          </div>
         </section>
 
         {/* 유아 동반 */}

@@ -225,3 +225,4 @@ export function normalizeKakaoPlace(place: KakaoPlace): NormalizedRestaurant {
     isRealData: true,
   };
 }
+
