@@ -495,13 +495,8 @@ export default function ResultPage() {
     if (isMobile && hasCoords) {
       window.location.href =
         `tmap://route?goalname=${name}&goalx=${current.lng}&goaly=${current.lat}`;
-    } else if (hasCoords) {
-      // 데스크톱: 구글맵 길찾기
-      window.open(
-        `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(current.address)}`,
-        "_blank"
-      );
     } else {
+      alert("PC에서는 티맵 연결이 불가하여 카카오맵으로 자동 연결됩니다.");
       window.open(getKakaoFallback(current), "_blank");
     }
   }
