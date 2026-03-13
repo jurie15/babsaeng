@@ -217,41 +217,6 @@ function MenuPhotoSlider({ menus, category }: { menus: RecommendedMenu[]; catego
   );
 }
 
-// ─── 카카오 SDK 로드 헬퍼 ─────────────────────────────────────────────────────
-
-// 모듈 레벨 — 여러 번 호출해도 스크립트는 한 번만 로드
-let _kakaoSdkPromise: Promise<boolean> | null = null;
-
-function ensureKakaoSdk(): Promise<boolean> {
-  if (_kakaoSdkPromise) return _kakaoSdkPromise;
-
-  _kakaoSdkPromise = new Promise((resolve) => {
-    const key = process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY;
-    if (!key) { resolve(false); return; }
-
-    const doInit = () => {
-      try {
-        if (!window.Kakao.isInitialized()) window.Kakao.init(key);
-        resolve(true);
-      } catch {
-        resolve(false);
-      }
-    };
-
-    if (typeof window.Kakao !== "undefined") {
-      doInit();
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.src = "https://t1.kakaocdn.net/kakaojs/sdk/latest/kakao.min.js";
-    script.onload = doInit;
-    script.onerror = () => { _kakaoSdkPromise = null; resolve(false); };
-    document.head.appendChild(script);
-  });
-
-  return _kakaoSdkPromise;
-}
 
 // ─── mock 데이터 헬퍼 ────────────────────────────────────────────────────────
 
@@ -471,8 +436,26 @@ export default function ResultPage() {
 
   useEffect(() => {
     loadPool();
-    ensureKakaoSdk();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // 카카오 SDK 로드 & 초기화
+  // ※ 카카오 개발자 콘솔(https://developers.kakao.com/console/app/1402815)
+  //   > 앱 설정 > 플랫폼 > Web 사이트 도메인에
+  //   https://babsaeng.vercel.app 이 등록되어 있어야 공유가 작동합니다.
+  useEffect(() => {
+    if (document.getElementById("kakao-sdk")) return;
+    const script = document.createElement("script");
+    script.id = "kakao-sdk";
+    script.src = "https://t1.kakaocdn.net/kakao_js_sdk/2.7.2/kakao.min.js";
+    script.crossOrigin = "anonymous";
+    script.onload = () => {
+      const key = process.env.NEXT_PUBLIC_KAKAO_JAVASCRIPT_KEY;
+      if (key && !window.Kakao.isInitialized()) {
+        window.Kakao.init(key);
+      }
+    };
+    document.head.appendChild(script);
   }, []);
 
   function advanceCard() {
@@ -513,9 +496,9 @@ export default function ResultPage() {
       window.location.href =
         `tmap://route?goalname=${name}&goalx=${current.lng}&goaly=${current.lat}`;
     } else if (hasCoords) {
-      // 데스크톱: tmap.life → 실패 시 카카오맵 fallback
+      // 데스크톱: 구글맵 길찾기
       window.open(
-        `https://tmap.life/map?goalname=${name}&goalx=${current.lng}&goaly=${current.lat}`,
+        `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(current.address)}`,
         "_blank"
       );
     } else {
@@ -526,18 +509,30 @@ export default function ResultPage() {
   async function handleKakaoShare() {
     if (!current) return;
 
-    const shareText = `🍽️ ${current.name}\n⭐ ${current.rating.toFixed(1)} · ${current.category}\n📍 ${current.address}\n\n밥선생에서 내 근처 맛집 추천받기 👉 https://babsaeng.vercel.app`;
+    const fallbackText = `🍽️ ${current.name}\n⭐ ${current.rating.toFixed(1)} · ${current.address}\n\n밥선생에서 내 근처 맛집 추천받기 👉 https://babsaeng.vercel.app`;
 
-    const ready = await ensureKakaoSdk();
-    if (ready && window.Kakao?.Share) {
+    if (window.Kakao?.Share) {
       try {
         window.Kakao.Share.sendDefault({
-          objectType: "text",
-          text: shareText,
-          link: {
-            mobileWebUrl: "https://babsaeng.vercel.app",
-            webUrl: "https://babsaeng.vercel.app",
+          objectType: "feed",
+          content: {
+            title: `밥선생 추천 - ${current.name}`,
+            description: `${current.address} · ⭐${current.rating.toFixed(1)}`,
+            imageUrl: "https://babsaeng.vercel.app/og-image.png",
+            link: {
+              mobileWebUrl: "https://babsaeng.vercel.app",
+              webUrl: "https://babsaeng.vercel.app",
+            },
           },
+          buttons: [
+            {
+              title: "밥선생에서 보기",
+              link: {
+                mobileWebUrl: "https://babsaeng.vercel.app",
+                webUrl: "https://babsaeng.vercel.app",
+              },
+            },
+          ],
         });
         return;
       } catch {
@@ -545,11 +540,11 @@ export default function ResultPage() {
       }
     }
 
-    // Kakao SDK 실패 → Web Share API → 클립보드 복사
+    // Kakao SDK 미준비 → Web Share API → 클립보드 복사
     if (navigator.share) {
-      navigator.share({ title: current.name, text: shareText }).catch(() => {});
+      navigator.share({ title: current.name, text: fallbackText }).catch(() => {});
     } else {
-      await navigator.clipboard.writeText(shareText).catch(() => {});
+      await navigator.clipboard.writeText(fallbackText).catch(() => {});
       alert("공유 내용이 클립보드에 복사됐어요!");
     }
   }
